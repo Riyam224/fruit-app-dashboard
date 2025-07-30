@@ -45,5 +45,8 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- todo image picker  -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Require Image for product that will be added to the database </string>
 </dict>
 </plist>
