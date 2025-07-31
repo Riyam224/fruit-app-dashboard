@@ -1,5 +1,5 @@
 const kisOnBoardingviewseen = 'isOnBoardingviewseen';
 const kUserData = 'userData';
-const supabaseUrl = "https://wbslfnvpvpblsomllgxf.supabase.co";
+const supabaseUrl = 'https://yqzzncifxcijttfknidd.supabase.co';
 const supabaseAnonKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indic2xmbnZwdnBibHNvbWxsZ3hmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI2OTYwNDQsImV4cCI6MjA2ODI3MjA0NH0.JU-9I4XcBUi9Axe1YFZduP_Yd4-muKbZbTW2tACcuq4";
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxenpuY2lmeGNpanR0ZmtuaWRkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1Mzk4MTE2MywiZXhwIjoyMDY5NTU3MTYzfQ.JJooNNLNy46QJ_EF01kQO_fG-kDe_mLGZ35TlfapLU4';
