@@ -39,7 +39,8 @@ class AddProductsModel {
       'code': code,
       'description': description,
       'price': price,
-      'image': image,
+      // todo no need to add image to firestore
+      // 'image': image,
       'isFeatured': isFeatured,
       'imageUrl': imageUrl,
     };

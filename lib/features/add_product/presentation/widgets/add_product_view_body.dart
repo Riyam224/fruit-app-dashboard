@@ -3,10 +3,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_dashboard/core/custom_widgets/custom_btn.dart';
 import 'package:fruit_dashboard/core/custom_widgets/custom_text_field.dart';
 import 'package:fruit_dashboard/core/custom_widgets/is_featured_product_checkbox.dart';
 import 'package:fruit_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
+import 'package:fruit_dashboard/features/add_product/presentation/cubit/add_product_cubit.dart';
 import 'package:fruit_dashboard/features/add_product/presentation/widgets/image_product.dart';
 
 class AddProductViewBody extends StatefulWidget {
@@ -103,10 +105,11 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                         image: fileImage!,
                         isFeatured: isFeaturedProduct,
                       );
+                      // todo add cubit here _________________
+                      context.read<AddProductCubit>().addProduct(input);
                     } else {
-                      setState(() {
-                        autovalidateMode = AutovalidateMode.always;
-                      });
+                      autovalidateMode = AutovalidateMode.always;
+                      setState(() {});
                     }
                   } else {
                     showError(context, 'Please select an image');
