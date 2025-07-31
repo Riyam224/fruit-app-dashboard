@@ -1,12 +1,13 @@
 // ignore_for_file: unused_local_variable
 
+import 'dart:core';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_dashboard/core/custom_widgets/custom_btn.dart';
 import 'package:fruit_dashboard/core/custom_widgets/custom_text_field.dart';
 import 'package:fruit_dashboard/core/custom_widgets/is_featured_product_checkbox.dart';
+import 'package:fruit_dashboard/core/custom_widgets/is_organic_checkbox.dart';
 import 'package:fruit_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
 import 'package:fruit_dashboard/features/add_product/presentation/cubit/add_product_cubit.dart';
 import 'package:fruit_dashboard/features/add_product/presentation/widgets/image_product.dart';
@@ -23,12 +24,11 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
-  late String productName;
-  late num productPrice;
-  late String productCode;
+  late String productName, productDescription, productCode;
+  late num productPrice, expirationalMonths, numberOfCalories, unitAmount;
   File? fileImage;
-  late String productDescription;
   bool isFeaturedProduct = false;
+  bool isOrganic = false;
 
   void _handleImagePicked(File? image) {
     setState(() {
@@ -65,6 +65,33 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
 
               SizedBox(height: 20),
               CustomTextFormField(
+                hintText: 'product expirational months',
+                textInputType: TextInputType.text,
+                onSaved: (value) {
+                  expirationalMonths = num.parse(value!);
+                },
+              ),
+
+              SizedBox(height: 20),
+              CustomTextFormField(
+                hintText: 'product number of calories',
+                textInputType: TextInputType.text,
+                onSaved: (value) {
+                  numberOfCalories = num.parse(value!);
+                },
+              ),
+
+              SizedBox(height: 20),
+              CustomTextFormField(
+                hintText: 'product unit amount',
+                textInputType: TextInputType.text,
+                onSaved: (value) {
+                  unitAmount = num.parse(value!);
+                },
+              ),
+
+              SizedBox(height: 20),
+              CustomTextFormField(
                 hintText: 'product code',
                 textInputType: TextInputType.text,
                 onSaved: (value) {
@@ -88,6 +115,13 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                 },
               ),
               SizedBox(height: 20),
+              // todo
+              IsOrganicCheckbox(
+                onChanged: (value) {
+                  isOrganic = value;
+                },
+              ),
+              SizedBox(height: 20),
               ImageProduct(onImagePicked: _handleImagePicked),
               SizedBox(height: 16),
               CustomBtn(
@@ -104,6 +138,10 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                         price: productPrice,
                         image: fileImage!,
                         isFeatured: isFeaturedProduct,
+                        expirationalMonths: expirationalMonths.toInt(),
+                        numberOfCalories: numberOfCalories.toInt(),
+                        unitAmount: unitAmount.toInt(),
+                        isOrganic: isOrganic,
                       );
                       // todo add cubit here _________________
                       context.read<AddProductCubit>().addProduct(input);
