@@ -1,4 +1,6 @@
+import 'dart:io';
+
 abstract class StorageService {
   // todo to implemen the url and recieve it as base64
-  Future<String> uploadFile(String file);
+  Future<String> uploadFile(File file, String path);
 }
