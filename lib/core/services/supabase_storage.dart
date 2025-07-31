@@ -10,7 +10,6 @@ class SupabaseStorageService implements StorageService {
 
   //  todo create bucket
   static createBuckets(String bucketName) async {
-    
     var buckets = await _supabase.client.storage.listBuckets();
     bool isBucketExits = false;
     for (var bucket in buckets) {
@@ -38,13 +37,16 @@ class SupabaseStorageService implements StorageService {
     try {
       String fileName = p.basename(file.path);
       String extensionName = p.extension(file.path);
-      await _supabase.client.storage
+      // todo upload
+      var result = await _supabase.client.storage
           .from('fruits_images')
           .upload('$path/$fileName.$extensionName', file);
-      final publicUrl = _supabase.client.storage
+      // todo get public url
+      final String publicUrl = _supabase.client.storage
           .from('fruits_images')
           .getPublicUrl('$path/$fileName.$extensionName');
-      return publicUrl;
+
+      return result;
     } catch (e) {
       throw Exception(e.toString());
     }
