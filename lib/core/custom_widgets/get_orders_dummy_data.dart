@@ -1,3 +1,4 @@
+import 'package:fruit_dashboard/core/enums/orders_enum.dart';
 import 'package:fruit_dashboard/features/orders/data/models/shipping_address_model.dart';
 import 'package:fruit_dashboard/features/orders/domain/entities/order_entity.dart';
 import 'package:fruit_dashboard/features/orders/domain/entities/order_product_entity.dart';
@@ -47,6 +48,7 @@ OrderEntity getDummyOrders() {
   return OrderEntity(
     totalPrice: totalPrice,
     uId: 'sample_user_001',
+    status: OrdersEnum.pending,
     shippingAddressModel: shippingAddressModel,
     orderProducts: orderProducts,
     paymentMethod: 'Cash',

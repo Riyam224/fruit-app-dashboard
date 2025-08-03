@@ -1,6 +1,8 @@
 // ignore_for_file: unnecessary_to_list_in_spreads
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:fruit_dashboard/core/enums/orders_enum.dart';
 import 'package:fruit_dashboard/features/orders/domain/entities/order_entity.dart';
 
 class OrderItemCard extends StatelessWidget {
@@ -49,46 +51,100 @@ class OrderItemCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
 
+            //  todo orders status
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: order.status == OrdersEnum.pending
+                    ? Colors.yellow
+                    : order.status == OrdersEnum.accepted
+                    ? Colors.green
+                    : order.status == OrdersEnum.delivered
+                    ? Colors.blue
+                    : Colors.redAccent,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                order.status.name,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+
+            const SizedBox(height: 12),
             // Product list
-            ...order.orderProducts.map((product) {
-              return Container(
-                margin: const EdgeInsets.only(bottom: 12),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        product.imageUrl,
-                        height: 50,
-                        width: 50,
-                        fit: BoxFit.cover,
-                      ),
+            // ...order.orderProducts.map((product) {
+            //   return Container(
+            //     margin: const EdgeInsets.only(bottom: 12),
+            //     child: Row(
+            //       children: [
+            //         ClipRRect(
+            //           borderRadius: BorderRadius.circular(8),
+            //           child: Image.network(
+            //             product.imageUrl,
+            //             height: 50,
+            //             width: 50,
+            //             fit: BoxFit.cover,
+            //           ),
+            //         ),
+            //         const SizedBox(width: 12),
+            //         Expanded(
+            //           child: Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Text(
+            //                 product.name,
+            //                 style: const TextStyle(fontSize: 16),
+            //               ),
+            //               const SizedBox(height: 4),
+            //               Text(
+            //                 'Code: ${product.code}',
+            //                 style: const TextStyle(color: Colors.grey),
+            //               ),
+            //               Text('Quantity: ${product.quantity}'),
+            //             ],
+            //           ),
+            //         ),
+            //         Text(
+            //           '\$${(product.price * product.quantity).toStringAsFixed(2)}',
+            //         ),
+            //       ],
+            //     ),
+            //   );
+            // }).toList(),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: order.orderProducts.length,
+              itemBuilder: (context, index) {
+                final product = order.orderProducts[index];
+                return ListTile(
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: CachedNetworkImage(
+                      imageUrl: product.imageUrl,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            product.name,
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            'Code: ${product.code}',
-                            style: const TextStyle(color: Colors.grey),
-                          ),
-                          Text('Quantity: ${product.quantity}'),
-                        ],
-                      ),
+                  ),
+                  title: Text(product.name),
+                  subtitle: Text(
+                    'Code: ${product.code} | Quantity: ${product.quantity} | Price: \$${product.price.toStringAsFixed(2)}',
+                  ),
+                  trailing: Text(
+                    '\$${(product.price * product.quantity).toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
                     ),
-                    Text(
-                      '\$${(product.price * product.quantity).toStringAsFixed(2)}',
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

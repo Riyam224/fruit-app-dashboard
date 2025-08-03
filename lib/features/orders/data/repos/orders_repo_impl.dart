@@ -20,11 +20,10 @@ class OrdersRepoImpl implements OrdersRepo {
       final data = await _databaseService.getData(
         path: BackendEndpoints.getOrders,
       );
-      List<OrderEntity> orders =
-          (data as List<dynamic>)
-                  .map((e) => OrderModel.fromJson(e).toEntity())
-                  .toList()
-              as List<OrderEntity>;
+      List<OrderEntity> orders = (data as List<dynamic>)
+          .map<OrderEntity>((e) => OrderModel.fromJson(e).toEntity())
+          .toList();
+
       return Right(orders);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
