@@ -9,9 +9,10 @@ abstract class DatabaseService {
 
   // todo service method for get user data ( fetch it )
 
-  Future<Map<String, dynamic>> getData({
+  Future<void> getData({
     required String path,
-    required String documentId,
+    String? documentId,
+    Map<String, dynamic>? query,
   });
 
   Future<bool> checkIfDataExist({

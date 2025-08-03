@@ -1,5 +1,7 @@
+// ignore_for_file: unnecessary_to_list_in_spreads
+
 import 'package:flutter/material.dart';
-import 'package:fruit_dashboard/features/orders/domain/order_entity.dart';
+import 'package:fruit_dashboard/features/orders/domain/entities/order_entity.dart';
 
 class OrderItemCard extends StatelessWidget {
   final OrderEntity order;

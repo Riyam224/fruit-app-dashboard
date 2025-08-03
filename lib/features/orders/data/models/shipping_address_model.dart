@@ -1,4 +1,4 @@
-import 'package:fruit_dashboard/features/orders/domain/shipping_address_entity.dart';
+import 'package:fruit_dashboard/features/orders/domain/entities/shipping_address_entity.dart';
 
 class ShippingAddressModel {
   String? name;

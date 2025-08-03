@@ -1,5 +1,5 @@
 import 'package:fruit_dashboard/features/orders/data/models/shipping_address_model.dart';
-import 'package:fruit_dashboard/features/orders/domain/order_product_entity.dart';
+import 'package:fruit_dashboard/features/orders/domain/entities/order_product_entity.dart';
 
 class OrderEntity {
   final double totalPrice;
