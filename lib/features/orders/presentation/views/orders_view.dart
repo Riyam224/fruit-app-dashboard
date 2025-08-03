@@ -4,7 +4,9 @@ import 'package:fruit_dashboard/core/custom_widgets/get_orders_dummy_data.dart';
 import 'package:fruit_dashboard/core/services/get_it_service.dart';
 import 'package:fruit_dashboard/features/orders/domain/repos/orders_repo.dart';
 import 'package:fruit_dashboard/features/orders/presentation/manager/fetch_orders/fetch_orders_cubit.dart';
+import 'package:fruit_dashboard/features/orders/presentation/manager/update_order/update_order_cubit.dart';
 import 'package:fruit_dashboard/features/orders/presentation/widgets/orders_view_body.dart';
+import 'package:fruit_dashboard/features/orders/presentation/widgets/update_order_builder.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class OrderView extends StatelessWidget {
@@ -12,11 +14,18 @@ class OrderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FetchOrdersCubit(getIt.get<OrdersRepo>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => FetchOrdersCubit(getIt.get<OrdersRepo>()),
+        ),
+        BlocProvider(
+          create: (context) => UpdateOrderCubit(getIt.get<OrdersRepo>()),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(title: Text('Orders')),
-        body: OrdersViewBodyBuilder(),
+        body: UpdateOrderBuilder(child: OrdersViewBodyBuilder()),
       ),
     );
   }
