@@ -55,11 +55,11 @@ class OrderItemCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: order.status == OrdersEnum.pending
+                color: order.status == OrdersStatusEnum.pending
                     ? Colors.yellow
-                    : order.status == OrdersEnum.accepted
+                    : order.status == OrdersStatusEnum.accepted
                     ? Colors.green
-                    : order.status == OrdersEnum.delivered
+                    : order.status == OrdersStatusEnum.delivered
                     ? Colors.blue
                     : Colors.redAccent,
                 borderRadius: BorderRadius.circular(8),

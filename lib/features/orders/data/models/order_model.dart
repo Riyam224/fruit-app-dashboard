@@ -10,6 +10,7 @@ class OrderModel {
   final ShippingAddressModel shippingAddressModel;
   final List<OrderProductModel> orderProducts;
   final String paymentMethod;
+  // todo
   final String orderId;
   final String? status;
 
@@ -63,10 +64,10 @@ class OrderModel {
     );
   }
 
-  OrdersEnum fetchEnum() {
-    return OrdersEnum.values.firstWhere(
+  OrdersStatusEnum fetchEnum() {
+    return OrdersStatusEnum.values.firstWhere(
       (e) => e.toString().split('.').last == status,
-      orElse: () => OrdersEnum.pending,
+      orElse: () => OrdersStatusEnum.pending,
     );
   }
 }

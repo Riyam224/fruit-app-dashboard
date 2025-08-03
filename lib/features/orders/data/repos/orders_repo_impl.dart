@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:dartz/dartz.dart';
+import 'package:fruit_dashboard/core/enums/orders_enum.dart';
 import 'package:fruit_dashboard/core/errors/failure.dart';
 import 'package:fruit_dashboard/core/services/database_service.dart';
 import 'package:fruit_dashboard/core/utils/backend_endpoints.dart';
@@ -26,6 +27,23 @@ class OrdersRepoImpl implements OrdersRepo {
       }
     } catch (e) {
       yield Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateOrder({
+    required OrdersStatusEnum status,
+    required String orderId,
+  }) async {
+    try {
+      await _databaseService.updateData(
+        data: {'status': status.name},
+        path: BackendEndpoints.updateOrder,
+        documentId: orderId,
+      );
+      return right(null);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
     }
   }
 }

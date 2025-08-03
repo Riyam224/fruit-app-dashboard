@@ -48,7 +48,7 @@ OrderEntity getDummyOrders() {
   return OrderEntity(
     totalPrice: totalPrice,
     uId: 'sample_user_001',
-    status: OrdersEnum.pending,
+    status: OrdersStatusEnum.pending,
     shippingAddressModel: shippingAddressModel,
     orderProducts: orderProducts,
     paymentMethod: 'Cash',

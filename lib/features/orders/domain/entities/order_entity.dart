@@ -8,7 +8,7 @@ class OrderEntity {
   final ShippingAddressModel shippingAddressModel;
   final List<OrderProductEntity> orderProducts;
   final String paymentMethod;
-  final OrdersEnum status;
+  final OrdersStatusEnum status;
 
   OrderEntity({
     required this.totalPrice,

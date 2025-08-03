@@ -24,4 +24,6 @@ class OrderProductEntity {
       'quantity': quantity,
     };
   }
+
+  toModel() {}
 }

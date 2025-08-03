@@ -5,4 +5,5 @@ class BackendEndpoints {
   static const isUserExist = 'users';
   static const addProducts = 'products';
   static const getOrders = 'Orders';
+  static const updateOrder = 'Orders';
 }
