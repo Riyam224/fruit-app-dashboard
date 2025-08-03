@@ -15,6 +15,13 @@ abstract class DatabaseService {
     Map<String, dynamic>? query,
   });
 
+  // todo
+  Stream<dynamic> streamData({
+    required String path,
+    String? documentId,
+    Map<String, dynamic>? query,
+  });
+
   Future<bool> checkIfDataExist({
     required String path,
     required String documentId,

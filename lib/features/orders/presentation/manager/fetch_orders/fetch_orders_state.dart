@@ -8,7 +8,7 @@ final class FetchOrdersLoading extends FetchOrdersState {}
 
 final class FetchOrdersSuccess extends FetchOrdersState {
   final List<OrderEntity> orders;
-  FetchOrdersSuccess(this.orders);
+  FetchOrdersSuccess({required this.orders});
 }
 
 final class FetchOrdersFailure extends FetchOrdersState {
