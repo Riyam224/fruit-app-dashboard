@@ -108,7 +108,7 @@ class OrderItemCard extends StatelessWidget {
               },
             ),
             // todo
-            OrderActionButton(orderModel: order),
+            OrderActionButton(orderEntity: order),
           ],
         ),
       ),

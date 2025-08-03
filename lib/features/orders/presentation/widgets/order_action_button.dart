@@ -5,9 +5,9 @@ import 'package:fruit_dashboard/features/orders/presentation/manager/update_orde
 import '../../domain/entities/order_entity.dart';
 
 class OrderActionButton extends StatelessWidget {
-  const OrderActionButton({super.key, required this.orderModel});
+  const OrderActionButton({super.key, required this.orderEntity});
 
-  final OrderEntity orderModel;
+  final OrderEntity orderEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -15,24 +15,41 @@ class OrderActionButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Visibility(
-          visible: orderModel.status == OrdersStatusEnum.pending,
+          visible: orderEntity.status == OrdersStatusEnum.pending,
           child: ElevatedButton(
             onPressed: () {
+              // todo
               context.read<UpdateOrderCubit>().updateOrder(
                 status: OrdersStatusEnum.accepted,
-                orderId: orderModel.orderId,
+                orderId: orderEntity.orderId,
               );
             },
             child: const Text("Accept"),
           ),
         ),
         Visibility(
-          visible: orderModel.status == OrdersStatusEnum.pending,
-          child: ElevatedButton(onPressed: () {}, child: const Text("Reject")),
+          visible: orderEntity.status == OrdersStatusEnum.pending,
+          child: ElevatedButton(
+            onPressed: () {
+              context.read<UpdateOrderCubit>().updateOrder(
+                status: OrdersStatusEnum.canceled,
+                orderId: orderEntity.orderId,
+              );
+            },
+            child: const Text("Reject"),
+          ),
         ),
         Visibility(
-          visible: orderModel.status == OrdersStatusEnum.accepted,
-          child: ElevatedButton(onPressed: () {}, child: const Text("Deliver")),
+          visible: orderEntity.status == OrdersStatusEnum.accepted,
+          child: ElevatedButton(
+            onPressed: () {
+              context.read<UpdateOrderCubit>().updateOrder(
+                status: OrdersStatusEnum.delivered,
+                orderId: orderEntity.orderId,
+              );
+            },
+            child: const Text("Deliver"),
+          ),
         ),
       ],
     );

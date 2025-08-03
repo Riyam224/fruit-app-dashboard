@@ -46,6 +46,7 @@ OrderEntity getDummyOrders() {
 
   // 5. Return a dummy OrderEntity
   return OrderEntity(
+    orderId: 'sample_order_id_001',
     totalPrice: totalPrice,
     uId: 'sample_user_001',
     status: OrdersStatusEnum.pending,
