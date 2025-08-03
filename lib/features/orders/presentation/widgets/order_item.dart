@@ -1,0 +1,95 @@
+import 'package:flutter/material.dart';
+import 'package:fruit_dashboard/features/orders/domain/order_entity.dart';
+
+class OrderItemCard extends StatelessWidget {
+  final OrderEntity order;
+
+  const OrderItemCard({super.key, required this.order});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Text(
+            //   'Order ID: ${order.orderId}',
+            //   style: const TextStyle(fontWeight: FontWeight.bold),
+            // ),
+            const SizedBox(height: 8),
+            Text('Total Price: \$${order.totalPrice.toStringAsFixed(2)}'),
+            const SizedBox(height: 8),
+            Text('Payment Method: ${order.paymentMethod}'),
+            const SizedBox(height: 8),
+            const Divider(),
+            Text(
+              'Shipping Info:',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 6),
+            Text('Name: ${order.shippingAddressModel.name}'),
+            Text('Phone: ${order.shippingAddressModel.phone}'),
+            Text('Email: ${order.shippingAddressModel.email}'),
+            Text(
+              'Address: ${order.shippingAddressModel.address}, '
+              'Floor: ${order.shippingAddressModel.floor}, '
+              'City: ${order.shippingAddressModel.city}',
+            ),
+            const Divider(height: 24),
+            Text(
+              'Products:',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+
+            // Product list
+            ...order.orderProducts.map((product) {
+              return Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                        product.imageUrl,
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            product.name,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Code: ${product.code}',
+                            style: const TextStyle(color: Colors.grey),
+                          ),
+                          Text('Quantity: ${product.quantity}'),
+                        ],
+                      ),
+                    ),
+                    Text(
+                      '\$${(product.price * product.quantity).toStringAsFixed(2)}',
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          ],
+        ),
+      ),
+    );
+  }
+}

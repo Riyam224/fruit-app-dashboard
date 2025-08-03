@@ -8,7 +8,7 @@ import 'package:fruit_dashboard/core/custom_widgets/custom_btn.dart';
 import 'package:fruit_dashboard/core/custom_widgets/custom_text_field.dart';
 import 'package:fruit_dashboard/core/custom_widgets/is_featured_product_checkbox.dart';
 import 'package:fruit_dashboard/core/custom_widgets/is_organic_checkbox.dart';
-import 'package:fruit_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
+import 'package:fruit_dashboard/features/add_product/domain/entities/products_entity.dart';
 import 'package:fruit_dashboard/features/add_product/domain/entities/review_entity.dart';
 import 'package:fruit_dashboard/features/add_product/presentation/cubit/add_product_cubit.dart';
 import 'package:fruit_dashboard/features/add_product/presentation/widgets/image_product.dart';
@@ -132,7 +132,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                   if (fileImage != null) {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      AddProductInputEntity input = AddProductInputEntity(
+                      ProductsEntity input = ProductsEntity(
                         reviews: [
                           ReviewEntity(
                             name: 'yoora',

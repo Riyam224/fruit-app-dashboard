@@ -19,6 +19,14 @@ class DashboardViewBody extends StatelessWidget {
             GoRouter.of(context).go(AppRoutes.addProduct);
           },
         ),
+        SizedBox(height: 20),
+        CustomBtn(
+          color: AppColors.btnColor,
+          text: 'view orders',
+          onTap: () {
+            // GoRouter.of(context).go(AppRoutes.addProduct);
+          },
+        ),
       ],
     );
   }

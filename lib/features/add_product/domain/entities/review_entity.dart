@@ -3,7 +3,7 @@ class ReviewEntity {
   final String image;
   final num rating;
   final String date;
-  final String reviewDescription;
+final String reviewDescription;
 
   ReviewEntity({
     required this.name,
