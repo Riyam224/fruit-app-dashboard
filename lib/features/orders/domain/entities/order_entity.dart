@@ -5,6 +5,7 @@ import 'package:fruit_dashboard/features/orders/domain/entities/order_product_en
 class OrderEntity {
   final double totalPrice;
   final String uId;
+  final String orderId;
   final ShippingAddressModel shippingAddressModel;
   final List<OrderProductEntity> orderProducts;
   final String paymentMethod;
@@ -12,6 +13,7 @@ class OrderEntity {
 
   OrderEntity({
     required this.totalPrice,
+    required this.orderId,
     required this.uId,
     required this.status,
     required this.shippingAddressModel,
@@ -22,6 +24,7 @@ class OrderEntity {
   toJson() => {
     'totalPrice': totalPrice,
     'uId': uId,
+    'orderId': orderId,
     'status': 'pending',
     'date': DateTime.now().toIso8601String(),
     'shippingAddressModel': shippingAddressModel.toJson(),

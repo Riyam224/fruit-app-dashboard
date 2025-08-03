@@ -56,6 +56,7 @@ class OrderModel {
   toEntity() {
     return OrderEntity(
       totalPrice: totalPrice,
+      orderId: orderId,
       uId: uId,
       status: fetchEnum(),
       shippingAddressModel: shippingAddressModel.toEntity(),

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fruit_dashboard/core/enums/orders_enum.dart';
 import 'package:fruit_dashboard/features/orders/domain/entities/order_entity.dart';
+import 'package:fruit_dashboard/features/orders/presentation/widgets/order_action_button.dart';
 
 class OrderItemCard extends StatelessWidget {
   final OrderEntity order;
@@ -71,46 +72,7 @@ class OrderItemCard extends StatelessWidget {
             ),
 
             const SizedBox(height: 12),
-            // Product list
-            // ...order.orderProducts.map((product) {
-            //   return Container(
-            //     margin: const EdgeInsets.only(bottom: 12),
-            //     child: Row(
-            //       children: [
-            //         ClipRRect(
-            //           borderRadius: BorderRadius.circular(8),
-            //           child: Image.network(
-            //             product.imageUrl,
-            //             height: 50,
-            //             width: 50,
-            //             fit: BoxFit.cover,
-            //           ),
-            //         ),
-            //         const SizedBox(width: 12),
-            //         Expanded(
-            //           child: Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: [
-            //               Text(
-            //                 product.name,
-            //                 style: const TextStyle(fontSize: 16),
-            //               ),
-            //               const SizedBox(height: 4),
-            //               Text(
-            //                 'Code: ${product.code}',
-            //                 style: const TextStyle(color: Colors.grey),
-            //               ),
-            //               Text('Quantity: ${product.quantity}'),
-            //             ],
-            //           ),
-            //         ),
-            //         Text(
-            //           '\$${(product.price * product.quantity).toStringAsFixed(2)}',
-            //         ),
-            //       ],
-            //     ),
-            //   );
-            // }).toList(),
+
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -145,6 +107,8 @@ class OrderItemCard extends StatelessWidget {
                 );
               },
             ),
+            // todo
+            OrderActionButton(orderModel: order),
           ],
         ),
       ),
